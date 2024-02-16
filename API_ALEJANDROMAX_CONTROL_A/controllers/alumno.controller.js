@@ -21,10 +21,10 @@ const alumnosGet = async(req, res = response) => {
 
 const getAlumnosByid = async (req, res) => {
     const { id } = req.params;
-    const alumno = await Alumno.findOne({_id: id});
+    const alumnos = await Alumno.findOne({_id: id});
 
     res.status(200).json({
-        alumno
+        alumnos
     });
 }
 
@@ -32,7 +32,7 @@ const alumnosPut = async (req, res) => {
     const { id } = req.params;
     const { _id, password, google, correo, ...resto} =req.body;
     
-    const alumno = await Alumno.findByIdAndUpdate(id, resto);
+    const alumnos = await Alumno.findByIdAndUpdate(id, resto);
 
     res.status(200).json({
         msg: 'Alumno Actualizado exitosamente'
@@ -41,7 +41,7 @@ const alumnosPut = async (req, res) => {
 
 const alumnosDelete = async (req, res) => {
     const {id} = req.params;
-    const alumno = await Alumno.findByIdAndUpdate(id,{estado: false});
+    const alumnos = await Alumno.findByIdAndUpdate(id,{estado: false});
 
     res.status(200).json({
         msg: 'Alumno Eliminado exitosamente'
