@@ -4,9 +4,35 @@ const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
 const { existenteEmail, existeAlumnoById } = require('../helpers/db-validators');
 
-const { alumnoPost } = require('..//')
+const { alumnosPost, alumnosGet, getAlumnosByid, alumnosPut, alumnosDelete} = require('../controllers/alumno.controller')
 
 const router = Router();
+
+router.get("/", alumnosGet);
+
+router.get(
+    "/:id",
+    [
+        check("id","El id no es un formato valio de MongoDB").isMongoId(),
+        check("id").custom(existeAlumnoById),
+        validarCampos
+    ], getAlumnosByid);
+
+router.put(
+    "/:id",
+    [
+        check("id","El id no es un formato valio de MongoDB").isMongoId(),
+        check("id").custom(existeAlumnoById),
+        validarCampos
+    ], alumnosPut);
+
+router.delete(
+    "/:id",
+    [
+        check("id","El id no es un formato valio de MongoDB").isMongoId(),
+        check("id").custom(existeAlumnoById),
+        validarCampos
+    ], alumnosDelete);
 
 router.post(
     "/",
@@ -16,4 +42,6 @@ router.post(
         check("correo","Este no es un correo valido").isEmail(),
         check("correo").custom(existenteEmail),
         validarCampos,
-    ], alumnoPost);
+    ], alumnosPost);
+
+module.exports = router;
