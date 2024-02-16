@@ -16,5 +16,4 @@ router.post(
         check("correo","Este no es un correo valido").isEmail(),
         check("correo").custom(existenteEmail),
         validarCampos,
-    ] alumnoPost);
-)
+    ], alumnoPost);
