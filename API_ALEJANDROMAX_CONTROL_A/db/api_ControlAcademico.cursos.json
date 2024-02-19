@@ -1,0 +1,10 @@
+[{
+  "_id": {
+    "$oid": "65d2a00423b3ca121eea4d36"
+  },
+  "nombre": "Ingles III",
+  "descripcion": "Curso de ingles III",
+  "correo": "amax@kinal.edu.gt",
+  "estado": false,
+  "__v": 0
+}]
