@@ -38,8 +38,30 @@ const getCursosByid = async (req, res) => {
     });
 }
 
+const cursosPut = async (req, res) => {
+    const { id } = req.params;
+    const { _id, correo, ...resto} =req.body;
+    
+    const cursos = await Cursos.findByIdAndUpdate(id, resto);
+
+    res.status(200).json({
+        msg: 'Curso Actualizado exitosamente'
+    });
+}
+
+const cursosDelete = async (req, res) => {
+    const {id} = req.params;
+    const cursos = await Cursos.findByIdAndUpdate(id,{estado: false});
+
+    res.status(200).json({
+        msg: 'Curso Eliminado exitosamente'
+    });
+}
+
 module.exports = {
     cursosPost,
     cursosGet,
-    getCursosByid
+    getCursosByid,
+    cursosPut,
+    cursosDelete
 }

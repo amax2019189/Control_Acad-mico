@@ -1,7 +1,7 @@
 const { Schema, model} = require('mongoose');
 
 const AlumnoSchema = Schema ({
-    nomre: {
+    nombre: {
         type: String,
         require: [true, 'El nombre es obligatorio']
     },
